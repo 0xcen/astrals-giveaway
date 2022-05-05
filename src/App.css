@@ -1,0 +1,219 @@
+@font-face {
+	font-family: 'Conthrax';
+	src: URL('/fonts/conthrax-sb.ttf') format('truetype');
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+*:focus {
+	outline: none;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	background-color: rgb(0, 9, 31);
+}
+
+.App {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(0, 9, 31);
+	padding: 5rem 1rem;
+}
+
+.card {
+	max-width: 80rem;
+	min-height: 40rem;
+
+	color: #fff;
+
+	background: hsla(0, 0%, 100%, 0.1);
+	border: 1px solid #446796;
+
+	padding: 8rem 8rem 6rem;
+	border-radius: 14px;
+}
+
+h1 {
+	font-family: 'Conthrax', sans-serif;
+	font-size: 3rem;
+	margin-bottom: 2rem;
+}
+
+h2 {
+	font-family: 'Conthrax', sans-serif;
+	margin: 3rem 0 1rem;
+	font-size: 2rem;
+}
+
+p {
+	font-size: 1.8rem;
+	line-height: 1.5;
+}
+
+.title {
+	display: flex;
+	justify-content: space-between;
+
+	margin: 2rem 0;
+}
+
+ul {
+	list-style: none;
+}
+
+li {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 1.8rem;
+
+	margin: 2rem 0;
+}
+
+.content ul svg {
+	height: 2rem;
+	width: 2rem;
+	margin: 0 2rem;
+
+	opacity: 0.7;
+	cursor: pointer;
+}
+
+.content ul svg:hover {
+	opacity: 1;
+}
+
+.more {
+	margin-top: 5rem;
+	display: block;
+	text-align: center;
+}
+
+.more svg {
+	height: 3rem;
+	width: 3rem;
+}
+.twitter-logo {
+	max-width: 2rem;
+	margin-right: 2rem;
+}
+.box {
+	width: 100%;
+	display: flex;
+	justify-content: end;
+}
+
+.login-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+}
+
+.login-form .box {
+	justify-content: center;
+	/* padding: 2rem 0; */
+}
+
+.login-form .login-input {
+	display: block;
+	max-width: 80%;
+}
+
+/* Leaderboard */
+
+.leaderboard .card {
+	position: relative;
+	width: 100rem;
+	z-index: 10;
+	background-color: rgb(0, 9, 31);
+}
+.leaderboard .card .bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -2;
+	width: 100%;
+	height: 100%;
+
+	border-radius: 0;
+}
+
+.leaderboard-list .leaderboard-item {
+	display: flex;
+	justify-content: space-between;
+	gap: 2rem;
+
+	border: rgb(93, 93, 93) solid 1px;
+	border-radius: 8px;
+	padding: 2rem 4rem;
+}
+
+.leaderboard-list :nth-child(1) {
+	border-color: gold;
+	transform: scale(1.01);
+}
+.leaderboard-list :nth-child(2) {
+	border-color: rgb(203, 203, 203);
+	transform: scale(1.006);
+}
+.leaderboard-list :nth-child(3) {
+	transform: scale(1.003);
+	border-color: rgb(151, 89, 18);
+}
+
+.leaderboard-list .number {
+	font-family: 'Conthrax', sans-serif;
+	flex-grow: 0;
+}
+
+.leaderboard-list .handle {
+	flex-grow: 1;
+	width: 100%;
+	font-weight: bold;
+}
+
+.leaderboard-item .points-wrapper {
+	display: flex;
+	gap: 2rem;
+}
+
+.points-breakdown {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+}
+.points-breakdown h3 {
+	font-size: 1.4rem;
+}
+
+.box {
+	justify-content: flex-end;
+	/* margin: 4rem auto; */
+}
+
+.leaderboard .box {
+	margin: 5rem 0;
+	justify-content: center;
+}
+.error {
+	color: red;
+}
+
+@media (max-width: 50rem) {
+	html {
+		font-size: 50%;
+	}
+	.card {
+		padding: 5.5rem 2.5rem 4rem;
+	}
+}
