@@ -1,6 +1,7 @@
 import React from 'react';
 import comment from '../img/comment.svg';
 import heart from '../img/heart.svg';
+import tag from '../img/tag.svg';
 import options from '../img/options.svg';
 
 const LeaderboardItem = ({
@@ -20,7 +21,13 @@ const LeaderboardItem = ({
 			<div className="points-wrapper">
 				<div className="points-breakdown">
 					<img src={comment} alt="" />
-					<span>{commented.count + tagged}</span>
+					<span>{commented.count}</span>
+				</div>
+				<div className="points-breakdown">
+					<div className="tag">
+						<img src={tag} alt="" />
+					</div>
+					<span>{tagged}</span>
 				</div>
 				<div className="points-breakdown">
 					<img src={heart} alt="" />

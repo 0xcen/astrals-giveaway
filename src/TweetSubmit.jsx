@@ -26,17 +26,14 @@ const TweetSubmit = () => {
 
 		const formData = new FormData(e.currentTarget).entries();
 
-		const myJson = [...formData].map((e) => ({
-			credentials: 'shaq',
-			tweets: [e[1]],
-		}));
+		const myJson = [...formData].map((e) => e[1]);
 
 		if (!sessionStorage.getItem('jwt')) return alert('no valid session found');
 
 		try {
 			const res = await axios.post(
 				'https://astrals-raid.herokuapp.com/submit',
-				myJson[0],
+				{ tweets: myJson },
 				{
 					headers: {
 						'Content-Type': 'application/json',
