@@ -52,6 +52,13 @@ const Leaderboard = () => {
 				</ul>
 			</div>
 			<div className="box">
+				<Button
+					variant="outlined"
+					style={{ marginRight: '3rem' }}
+					onClick={() => nav('/new-giveaway')}
+				>
+					Back
+				</Button>
 				<Button variant="outlined" onClick={handleDownload}>
 					Save
 				</Button>

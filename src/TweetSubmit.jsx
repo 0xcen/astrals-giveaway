@@ -88,6 +88,11 @@ const TweetSubmit = () => {
 							</svg>
 						</li>
 					</ul>
+					{isLoading && (
+						<span>
+							Estimated total time {giveawayTweets.length * 3 + 3} seconds
+						</span>
+					)}
 					<div className="box">
 						<LoadingButton
 							size="large"
