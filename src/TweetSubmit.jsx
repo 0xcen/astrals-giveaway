@@ -10,6 +10,7 @@ const TweetSubmit = () => {
 	const nav = useNavigate();
 	const [giveawayTweets, setGiveawayTweets] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState('');
 
 	const addTweet = () => {
 		setGiveawayTweets([...giveawayTweets, { index: uuid() }]);

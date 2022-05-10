@@ -2,6 +2,9 @@ import React, { useRef, useState, useEffect } from 'react';
 // import data from '../testData';
 import * as htmlToImage from 'html-to-image';
 
+import astralsLogo from '../img/astrals-white.png';
+import astralsA from '../img/astrals-a.png';
+
 import LeaderboardItem from './LeaderboardItem';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -40,16 +43,20 @@ const Leaderboard = () => {
 		setData(JSON.parse(localStorage.getItem('data')));
 	}, []);
 	return (
-		<div className="leaderboard">
-			<div className="card" ref={myNode}>
+		<div className="leaderboard-container">
+			<div className="leaderboard" ref={myNode}>
 				<div className="bg"></div>
-				<h1>Leaderboard</h1>
-				<ul className="leaderboard-list">
-					{data.length > 0 &&
-						data.map((e, i) => {
-							return <LeaderboardItem {...e} i={i + 1} />;
-						})}
-				</ul>
+				<div className="card">
+					<img src={astralsLogo} className="logo" alt="" />
+					<h1>TWITTER RAID LEADERBOARD</h1>
+					<ul className="leaderboard-list">
+						{data.length > 0 &&
+							data.map((e, i) => {
+								return <LeaderboardItem {...e} i={i + 1} />;
+							})}
+					</ul>
+					<img src={astralsA} className="fav" alt="" />
+				</div>
 			</div>
 			<div className="box">
 				<Button
@@ -57,11 +64,13 @@ const Leaderboard = () => {
 					style={{ marginRight: '3rem' }}
 					onClick={() => nav('/new-giveaway')}
 				>
-					Back
-				</Button>
+					{' '}
+					Back{' '}
+				</Button>{' '}
 				<Button variant="outlined" onClick={handleDownload}>
-					Save
-				</Button>
+					{' '}
+					Save{' '}
+				</Button>{' '}
 			</div>
 		</div>
 	);

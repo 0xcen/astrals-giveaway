@@ -27,12 +27,11 @@ const UserProvider = ({ children }) => {
 			},
 		});
 
-		console.log(res);
 		if (res.status === 200) {
 			return res.data.user;
 		} else {
 			sessionStorage.clear();
-			return location.assign('/');
+			// return location.assign('/');
 		}
 	};
 
@@ -42,7 +41,6 @@ const UserProvider = ({ children }) => {
 				return setIsLoading(false);
 			}
 			(async () => {
-				console.log('Getting user');
 				setUser(await getUser());
 				setIsLoading(false);
 			})();
