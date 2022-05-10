@@ -190,7 +190,7 @@ li {
 	justify-content: space-between;
 	gap: 2rem;
 
-	border: rgba(140, 152, 158, 0.8) solid 2px;
+	border: rgba(140, 152, 158, 0.9) solid 2px;
 	border-radius: 8px;
 	padding: 2rem 4rem;
 }
