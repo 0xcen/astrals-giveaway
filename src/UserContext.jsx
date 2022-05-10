@@ -31,7 +31,7 @@ const UserProvider = ({ children }) => {
 			return res.data.user;
 		} else {
 			sessionStorage.clear();
-			// return location.assign('/');
+			return location.assign('/');
 		}
 	};
 
