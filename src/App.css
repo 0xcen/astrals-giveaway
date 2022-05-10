@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'Conthrax';
-	src: URL('/fonts/conthrax-sb.ttf') format('truetype');
+	src: URL('src/conthrax-sb.ttf') format('truetype');
 }
 
 * {
