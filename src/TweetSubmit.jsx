@@ -29,6 +29,11 @@ const TweetSubmit = () => {
 		const formFile = new FormData(e.currentTarget).get('prev-scores');
 
 		if (!sessionStorage.getItem('jwt')) return alert('no valid session found');
+		console.log(formFile);
+		if (formFile.type !== 'application/json') {
+			setIsLoading(false);
+			return setError('Attachment must be a json file.');
+		}
 
 		try {
 			const res = await axios.post(
@@ -93,6 +98,11 @@ const TweetSubmit = () => {
 					</ul>
 					<h2>Attach your previous scores</h2>
 					<input type="file" name="prev-scores" />
+					{error && (
+						<span style={{ display: 'block', marginTop: '8px', color: '#F00' }}>
+							{error}
+						</span>
+					)}
 					{isLoading && (
 						<span>
 							Estimated total time {giveawayTweets.length * 3 + 3} seconds

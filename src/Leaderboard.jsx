@@ -16,7 +16,7 @@ const Leaderboard = () => {
 	const [data, setData] = useState([]);
 
 	const download = (source) => {
-		const fileName = Date.now() + ' Leaderboard.jpg';
+		const fileName = `leaderboard-${Date.now()}.jpg`;
 		var el = document.createElement('a');
 		el.setAttribute('href', source);
 		el.setAttribute('download', fileName);
@@ -46,7 +46,7 @@ const Leaderboard = () => {
 			}
 		);
 
-		handleSaveToPC(data);
+		handleSaveToPC(data, `ongoing-leaderboard-${Date.now()}.json`);
 	};
 
 	const handleDownload = () => {
