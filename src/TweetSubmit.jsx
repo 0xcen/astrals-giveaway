@@ -29,7 +29,6 @@ const TweetSubmit = () => {
 		const formFile = new FormData(e.currentTarget).get('prev-scores');
 
 		if (!sessionStorage.getItem('jwt')) return alert('no valid session found');
-		console.log(formFile);
 		if (formFile.size > 0 && formFile.type !== 'application/json') {
 			setIsLoading(false);
 			return setError('Attachment must be a json file.');
@@ -50,7 +49,9 @@ const TweetSubmit = () => {
 			localStorage.setItem('data', JSON.stringify(res.data));
 			nav('/leaderboard');
 		} catch (e) {
-			nav('/');
+			// setError(res.message);
+			setError(e.response.data.message);
+			setIsLoading(false);
 		}
 	};
 	return (
