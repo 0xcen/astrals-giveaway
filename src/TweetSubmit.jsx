@@ -30,7 +30,7 @@ const TweetSubmit = () => {
 
 		if (!sessionStorage.getItem('jwt')) return alert('no valid session found');
 		console.log(formFile);
-		if (formFile.type !== 'application/json') {
+		if (formFile.size > 0 && formFile.type !== 'application/json') {
 			setIsLoading(false);
 			return setError('Attachment must be a json file.');
 		}
