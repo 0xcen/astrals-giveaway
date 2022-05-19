@@ -25,16 +25,15 @@ const TweetSubmit = () => {
 		e.preventDefault();
 		setIsLoading(true);
 
-		const formData = new FormData(e.currentTarget).entries();
-
-		const myJson = [...formData].map((e) => e[1]);
+		const formData = new FormData(e.currentTarget);
+		const formFile = new FormData(e.currentTarget).get('prev-scores');
 
 		if (!sessionStorage.getItem('jwt')) return alert('no valid session found');
 
 		try {
 			const res = await axios.post(
 				'https://astrals-raid.herokuapp.com/submit',
-				{ tweets: myJson },
+				formData,
 				{
 					headers: {
 						'Content-Type': 'application/json',
@@ -42,6 +41,7 @@ const TweetSubmit = () => {
 					},
 				}
 			);
+
 			localStorage.setItem('data', JSON.stringify(res.data));
 			nav('/leaderboard');
 		} catch (e) {
@@ -50,7 +50,7 @@ const TweetSubmit = () => {
 	};
 	return (
 		<div className="card">
-			<h1>Astrals Twitter Givaway Tool</h1>
+			<h1>Astrals Twitter Giveaway Tool</h1>
 			<div className="content">
 				<p>
 					Add tweet links to include them in the giveaway. Keep in mind the
@@ -71,24 +71,28 @@ const TweetSubmit = () => {
 								index={t.index}
 							/>
 						))}
-						<li className="more">
-							<svg
-								onClick={() => addTweet()}
-								xmlns="http://www.w3.org/2000/svg"
-								className="h-6 w-6"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke="currentColor"
-								strokeWidth={2}
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-								/>
-							</svg>
-						</li>
+						{giveawayTweets.length <= 6 && (
+							<li className="more">
+								<svg
+									onClick={() => addTweet()}
+									xmlns="http://www.w3.org/2000/svg"
+									className="h-6 w-6"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+									strokeWidth={2}
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+									/>
+								</svg>
+							</li>
+						)}
 					</ul>
+					<h2>Attach your previous scores</h2>
+					<input type="file" name="prev-scores" />
 					{isLoading && (
 						<span>
 							Estimated total time {giveawayTweets.length * 3 + 3} seconds

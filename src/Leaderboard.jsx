@@ -8,6 +8,7 @@ import astralsA from '../img/astrals-a.png';
 import LeaderboardItem from './LeaderboardItem';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Leaderboard = () => {
 	const myNode = useRef(null);
@@ -22,6 +23,30 @@ const Leaderboard = () => {
 		document.body.appendChild(el);
 		el.click();
 		el.remove();
+	};
+
+	const handleSaveToPC = (jsonData, filename) => {
+		const fileData = JSON.stringify(jsonData);
+		const blob = new Blob([fileData], { type: 'text/plain' });
+		const url = URL.createObjectURL(blob);
+		const link = document.createElement('a');
+		link.download = `${filename}.json`;
+		link.href = url;
+		link.click();
+	};
+
+	const handleJsonDownload = async () => {
+		const { data } = await axios.get(
+			'https://astrals-raid.herokuapp.com/download',
+			{
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${sessionStorage.getItem('jwt')}`,
+				},
+			}
+		);
+
+		handleSaveToPC(data);
 	};
 
 	const handleDownload = () => {
@@ -40,7 +65,7 @@ const Leaderboard = () => {
 
 	useEffect(() => {
 		if (!localStorage.getItem('data')) return nav('/');
-		setData(JSON.parse(localStorage.getItem('data')));
+		setData(JSON.parse(localStorage.getItem('data'))['final_results']);
 	}, []);
 	return (
 		<div className="leaderboard-container">
@@ -50,7 +75,7 @@ const Leaderboard = () => {
 					<img src={astralsLogo} className="logo" alt="" />
 					<h1>TWITTER RAID LEADERBOARD</h1>
 					<ul className="leaderboard-list">
-						{data.length > 0 &&
+						{data?.length > 0 &&
 							data.map((e, i) => {
 								return <LeaderboardItem {...e} i={i + 1} />;
 							})}
@@ -64,13 +89,18 @@ const Leaderboard = () => {
 					style={{ marginRight: '3rem' }}
 					onClick={() => nav('/new-giveaway')}
 				>
-					{' '}
-					Back{' '}
-				</Button>{' '}
-				<Button variant="outlined" onClick={handleDownload}>
-					{' '}
-					Save{' '}
-				</Button>{' '}
+					Back
+				</Button>
+				<Button
+					variant="outlined"
+					style={{ marginRight: '3rem' }}
+					onClick={handleDownload}
+				>
+					Save
+				</Button>
+				<Button onClick={handleJsonDownload} variant="outlined">
+					Download Today's Collective Scores
+				</Button>
 			</div>
 		</div>
 	);
